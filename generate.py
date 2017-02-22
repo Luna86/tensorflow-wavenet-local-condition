@@ -179,7 +179,7 @@ def main():
         # Run the WaveNet to predict the next sample.
         prediction = sess.run(outputs, feed_dict={samples: np.reshape(window, (1, input_channels))})[0]
         #TODO: next_input = np.concatenate((prediction, gt(4:9)), axis=1). motion.append(next_input)
-        motion.append(np.concatenate((np.reshape(prediction, (1, output_channels)), np.reshape(gt_list[cut_index + step][output_channels:], (1, output_channels))), axis=1))
+        motion.append(np.concatenate((np.reshape(prediction, (1, output_channels)), np.reshape(gt_list[cut_index + step][output_channels:], (1, input_channels - output_channels))), axis=1))
         # Show progress only once per second.
         current_sample_timestamp = datetime.now()
         time_since_print = current_sample_timestamp - last_sample_timestamp
