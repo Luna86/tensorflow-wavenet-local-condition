@@ -202,7 +202,9 @@ def main():
         if not os.path.exists(scene_dir):
             os.makedirs(scene_dir)
         filedir = os.path.join(scene_dir, os.path.basename(args.motion_seed))
-        np.savetxt(filedir, motion[:, :output_channels], delimiter=',')
+
+        motion_array = np.array(motion)
+        np.savetxt(filedir, motion_array[:, :output_channels], delimiter=',')
         #sio.savemat(filedir, {'sequence_gt': gt, 'sequence_predict': motion[:, :output_channels], 'global_T': global_T, 'global_Theta': global_Theta,
         #                      'startFrames': startFrames, 'datatype': foldername, 'testdataPath: '})
         print(len(motion))
